@@ -11,5 +11,17 @@ export async function generateMetadata({ params }) {
   return {
     title: seo.title || "",
     description: seo.metaDesc || "",
+    openGraph: {
+      title: seo.title || "",
+      description: seo.metaDesc || "",
+      type: seo.opengraphType || "",
+      publishedTime: seo.opengraphPublishedTime || "",
+      lastModified: seo.opengraphModifiedTime || "",
+      images: [
+        {
+          url: seo.opengraphImage?.mediaItemUrl || "",
+        },
+      ],
+    },
   };
 }

@@ -4,14 +4,42 @@ export const getPageSeo = async (uri) => {
       nodeByUri(uri: $uri) {
         ... on Page {
           seo {
+            opengraphImage {
+              mediaItemUrl
+            }
+            opengraphModifiedTime
+            opengraphPublishedTime
+            opengraphTitle
+            opengraphType
+            opengraphUrl
+            schema {
+              raw
+            }
             title
             metaDesc
+            opengraphSiteName
+            readingTime
+            opengraphPublisher
           }
         }
         ... on Property {
           seo {
+            opengraphImage {
+              mediaItemUrl
+            }
+            opengraphModifiedTime
+            opengraphPublishedTime
+            opengraphTitle
+            opengraphType
+            opengraphUrl
+            schema {
+              raw
+            }
             title
             metaDesc
+            opengraphSiteName
+            readingTime
+            opengraphPublisher
           }
         }
       }
