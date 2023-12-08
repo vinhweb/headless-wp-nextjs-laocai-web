@@ -1,10 +1,10 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Pagination } from "./Pagination";
-import { Results } from "./Results";
 import queryString from "query-string";
 import { Filters } from "./Filters";
+import { Results } from "./Results";
+import { Pagination } from "./Pagination";
 
 export const PropertySearch = () => {
   const [properties, setProperties] = useState([]);

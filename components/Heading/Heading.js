@@ -1,5 +1,5 @@
 import React from "react";
-import { getFontSizeForHeading, getTextAlign } from "utils/fonts";
+import { getFontSizeForHeading, getTextAlign } from "../../utils/fonts";
 
 export const Heading = ({ textAlign, content, level }) => {
   const tag = React.createElement(`h${level}`, {

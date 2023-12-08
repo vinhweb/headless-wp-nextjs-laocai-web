@@ -2,10 +2,11 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 
-import { Poppins, Aboreto } from "next/font/google";
+import { Poppins, Space_Grotesk } from "next/font/google";
 import "../styles/globals.css";
-import { MainMenu } from "components/MainMenu";
-import { getMenu } from "utils/getMenu";
+
+import { getMenu } from "../utils/getMenu";
+import { MainMenu } from "../components/MainMenu";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -14,18 +15,17 @@ const poppins = Poppins({
   weight: ["400", "700"],
 });
 
-const aboreto = Aboreto({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-aboreto",
-  weight: ["400"],
-});
+const space_grotesk = Space_Grotesk({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-space-grotesk',
+})
 
 export default async function RootLayout({ children }) {
   const data = await getMenu();
   return (
-    <html className={`${poppins.variable} ${aboreto.variable}`}>
-      <body className="font-body">
+    <html className={`${poppins.variable} ${space_grotesk.variable}`}>
+      <body className="font-body bg-white text-black antialiased dark:bg-gray-950 dark:text-white">
         <MainMenu
           items={data.mainMenuItems}
           callToActionDestination={data.callToActionDestination}

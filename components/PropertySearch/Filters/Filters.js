@@ -1,6 +1,6 @@
-import { Input } from "components/Input";
 import { useEffect, useState } from "react";
 import queryString from "query-string";
+import { Input } from "../../Input";
 
 export const Filters = ({ onSearch }) => {
   const [petFriendly, setPetFriendly] = useState(false);

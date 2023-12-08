@@ -1,6 +1,6 @@
-import { ButtonLink } from "components/ButtonLink";
 import Link from "next/link";
 import { FaHouseUser, FaHeart } from "react-icons/fa";
+import { ButtonLink } from "../ButtonLink";
 
 export const MainMenu = ({
   items,

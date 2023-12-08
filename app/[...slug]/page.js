@@ -1,6 +1,6 @@
-import { getPageByUri } from "utils/getPageByUri";
-import { getPageSeo } from "utils/getPageSeo";
-import { BlockRenderer } from "components/BlockRenderer";
+import { getPageByUri } from "../../utils/getPageByUri";
+import { BlockRenderer } from "../../components/BlockRenderer";
+import { getPageSeo } from "../../utils/getPageSeo";
 
 export default async function Page({ params }) {
   const data = await getPageByUri(params.slug.join("/"));
@@ -11,6 +11,17 @@ export async function generateMetadata({ params }) {
   return {
     title: seo.title || "",
     description: seo.metaDesc || "",
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     openGraph: {
       title: seo.title || "",
       description: seo.metaDesc || "",

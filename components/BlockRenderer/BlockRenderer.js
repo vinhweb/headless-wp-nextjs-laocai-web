@@ -1,16 +1,17 @@
-import { CallToActionButton } from "components/CallToActionButton";
-import { Column } from "components/Column";
-import { Columns } from "components/Columns";
-import { Cover } from "components/Cover";
-import { FormspreeForm } from "components/FormspreeForm";
-import { Gallery } from "components/Gallery";
-import { Heading } from "components/Heading";
-import { Paragraph } from "components/Paragraph";
-import { PropertyFeatures } from "components/PropertyFeatures";
-import { PropertySearch } from "components/PropertySearch";
-import { TickItem } from "components/TickItem";
+
 import Image from "next/image";
-import { theme } from "theme";
+import { theme } from "../../theme";
+import { PropertyFeatures } from "../PropertyFeatures";
+import { TickItem } from "../TickItem";
+import { Gallery } from "../Gallery";
+import { FormspreeForm } from "../FormspreeForm";
+import { CallToActionButton } from "../CallToActionButton";
+import { Paragraph } from "../Paragraph";
+import { Heading } from "../Heading";
+import { PropertySearch } from "../PropertySearch";
+import { Cover } from "../Cover";
+import { Columns } from "../Columns";
+import { Column } from "../Column";
 
 export const BlockRenderer = ({ blocks }) => {
   return blocks?.map((block) => {

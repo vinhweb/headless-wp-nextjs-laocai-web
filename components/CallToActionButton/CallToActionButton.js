@@ -1,4 +1,4 @@
-import { ButtonLink } from "components/ButtonLink";
+import { ButtonLink } from "../ButtonLink";
 
 export const CallToActionButton = ({
   align = "left",
