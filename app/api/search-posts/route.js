@@ -13,6 +13,7 @@ export async function POST(request) {
         query: `query PostsQuery {
           posts(where: { 
             offsetPagination: { size: 3, offset: ${((filters.page || 1) - 1) * 3} }
+            search: "${filters?.searchTerm}"
           }) {
             pageInfo {
               offsetPagination {

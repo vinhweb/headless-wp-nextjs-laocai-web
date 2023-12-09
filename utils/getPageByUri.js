@@ -10,6 +10,11 @@ export const getPageByUri = async (uri) => {
           title
           blocks
         }
+        ... on Post {
+          id
+          title
+          blocks
+        }
         ... on Property {
           id
           title

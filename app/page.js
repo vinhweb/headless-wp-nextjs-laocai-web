@@ -3,8 +3,6 @@ import { BlockRenderer } from "../components/BlockRenderer";
 import { getPageSeo } from "../utils/getPageSeo";
 import { getLatestPosts } from "../utils/getLatestPosts";
 import Link from "next/link";
-import formatDate from "../utils/formatDate";
-import Image from "next/image";
 import PostCard from "../components/PostSearch/Results/PostCard";
 
 const MAX_DISPLAY = 3

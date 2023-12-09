@@ -22,6 +22,26 @@ export const getPageSeo = async (uri) => {
             opengraphPublisher
           }
         }
+        ... on Post {
+          seo {
+            opengraphImage {
+              mediaItemUrl
+            }
+            opengraphModifiedTime
+            opengraphPublishedTime
+            opengraphTitle
+            opengraphType
+            opengraphUrl
+            schema {
+              raw
+            }
+            title
+            metaDesc
+            opengraphSiteName
+            readingTime
+            opengraphPublisher
+          }
+        }
         ... on Property {
           seo {
             opengraphImage {

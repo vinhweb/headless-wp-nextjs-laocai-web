@@ -1,7 +1,7 @@
 export const getLatestPosts = async () => {
   const params = {
     query: `query LatestPostQuery {
-       properties(where: { 
+       posts(where: { 
         offsetPagination: { size: 3 }
       }) {
         pageInfo {
@@ -38,7 +38,7 @@ export const getLatestPosts = async () => {
   });
   const { data } = await response.json();
   return {
-    posts: data.properties.nodes,
-    total: data.properties.pageInfo.offsetPagination.total,
+    posts: data.posts.nodes,
+    total: data.posts.pageInfo.offsetPagination.total,
   };
 };

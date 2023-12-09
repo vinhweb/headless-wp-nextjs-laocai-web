@@ -62,16 +62,16 @@ export async function POST(request) {
             offsetPagination: { size: 3, offset: ${
               ((filters.page || 1) - 1) * 3
             } }
-          metaQuery: {
-            relation: AND
-            metaArray: [
-              ${petFriendlyFilter}
-              ${hasParkingFilter}
-              ${minPriceFilter}
-              ${maxPriceFilter}
-            ]
-          }
-        }) {
+            metaQuery: {
+              relation: AND
+              metaArray: [
+                ${petFriendlyFilter}
+                ${hasParkingFilter}
+                ${minPriceFilter}
+                ${maxPriceFilter}
+              ]
+            }
+          }) {
             pageInfo {
               offsetPagination {
                 total

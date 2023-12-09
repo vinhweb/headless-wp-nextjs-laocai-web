@@ -12,6 +12,7 @@ import { PropertySearch } from "../PropertySearch";
 import { Cover } from "../Cover";
 import { Columns } from "../Columns";
 import { Column } from "../Column";
+import PostSearch from "../PostSearch/PostSearch";
 
 export const BlockRenderer = ({ blocks }) => {
   return blocks?.map((block) => {
@@ -89,6 +90,9 @@ export const BlockRenderer = ({ blocks }) => {
       }
       case "acf/propertysearch": {
         return <PropertySearch key={block.id} />;
+      }
+      case "acf/posts-search": {
+        return <PostSearch key={block.id} />;
       }
       case "core/cover": {
         return (
