@@ -22,6 +22,7 @@ export async function generateMetadata({ params }) {
     }
   }
   return {
+    metadataBase: new URL(`https://laocaiweb.com/${params.slug.join("/")}`),
     title: seo.title || "",
     description: seo.metaDesc || "",
     robots: {

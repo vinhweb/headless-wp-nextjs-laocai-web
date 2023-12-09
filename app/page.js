@@ -59,6 +59,7 @@ export default async function Page() {
 export async function generateMetadata() {
   const seo = await getPageSeo("/");
   return {
+    metadataBase: new URL('https://laocaiweb.com/'),
     title: seo.title || "",
     description: seo.metaDesc || "",
     robots: {
