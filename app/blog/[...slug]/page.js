@@ -4,6 +4,9 @@ import { getPageSeo } from "../../../utils/getPageSeo";
 import { notFound } from "next/navigation";
 import { getPostByUri } from "../../../utils/getPostByUri";
 import { getPostSeo } from "../../../utils/getPostSeo";
+import { getFontSizeForHeading } from "../../../utils/fonts";
+import Image from "next/image";
+import formatDate from "../../../utils/formatDate";
 
 export default async function Page({ params }) {
   const data = await getPostByUri(params.slug.join('/'));
@@ -13,10 +16,36 @@ export default async function Page({ params }) {
   }
   return (
     <article>
-      <div
-        dangerouslySetInnerHTML={{ __html: data.content }}
-        className={'prose-lg max-w-none pb-8 pt-10 dark:prose-invert'}
-      >
+      <div className="space-y-2 pb-8 pt-6 md:space-y-5">
+        <div>
+          <h1 className={`font-bold font-heading max-w-5xl mx-auto my-5 leading-tight ${getFontSizeForHeading(2)} text-left`}>
+            {data.title}
+          </h1>
+          <div className="pb-4 z-10">
+            Ngày đăng {formatDate(data.date)} - Cập nhật {formatDate(data.modified)} - Tác giả: Vinh Web
+          </div>
+        </div>
+        <div className="flex w-full relative h-[200px]">
+          <Image
+            src={data.featuredImage}
+            priority="low"
+            fill
+            alt=""
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+        <div
+          className={'prose-lg max-w-none py-8 dark:prose-invert'}
+        >
+          <blockquote
+            dangerouslySetInnerHTML={{ __html: data.excerpt }}
+            className="relative z-10 text-left text-opacity-95 text-xl pl-4 border-l-4 border-lime-200"
+          />
+          <div
+            dangerouslySetInnerHTML={{ __html: data.content }}
+          >
+          </div>
+        </div>
       </div>
     </article>
   )

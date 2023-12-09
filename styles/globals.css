@@ -7,3 +7,7 @@
     @apply bg-blue-500 hover:bg-blue-700 inline-block my-2 px-4 py-2 uppercase rounded-md cursor-pointer font-bold text-white;
   }
 }
+
+.prose-lg ul{
+  @apply list-disc
+}

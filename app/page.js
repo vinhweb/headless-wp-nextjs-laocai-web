@@ -4,8 +4,9 @@ import { getPageSeo } from "../utils/getPageSeo";
 import { getLatestPosts } from "../utils/getLatestPosts";
 import Link from "next/link";
 import PostCard from "../components/PostSearch/Results/PostCard";
+import { getFontSizeForHeading } from "../utils/fonts";
 
-const MAX_DISPLAY = 3
+const MAX_DISPLAY = 6
 
 export default async function Page() {
   const data = await getLatestPosts();
@@ -15,7 +16,7 @@ export default async function Page() {
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <h1 className="text-3xl font-bold font-heading leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          <h1 className={`font-bold font-heading max-w-5xl mx-auto my-5 leading-tight ${getFontSizeForHeading(1)} text-left`}>
             Mới nhất
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
@@ -36,8 +37,8 @@ export default async function Page() {
                     uri={uri}
                   />
                 </li>
-              )
-            })}
+                )
+              })}
           </ul>
         </div>
         {total > MAX_DISPLAY && (

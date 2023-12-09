@@ -7,9 +7,25 @@ export const getPostByUri = async (uri) => {
       nodeByUri(uri: $uri) {
         ... on Post {
           id
-          title
           blocks
-          content
+          databaseId
+          date
+          modified
+          slug
+          title(format: RENDERED)
+          excerpt(format: RENDERED)
+          content(format: RENDERED)
+          featuredImage {
+            node {
+              mediaDetails {
+                sizes {
+                  sourceUrl
+                  width
+                  height
+                }
+              }
+            }
+          }
         }
       }
       acfOptionsMainMenu {
@@ -67,6 +83,10 @@ export const getPostByUri = async (uri) => {
     callToActionDestination:
       data.acfOptionsMainMenu.mainMenu.callToActionButton.destination.uri,
     blocks,
-    content: data.nodeByUri?.content
+    content: data.nodeByUri?.content,
+    date: data.nodeByUri?.date,
+    modified: data.nodeByUri?.modified,
+    excerpt: data.nodeByUri?.excerpt,
+    featuredImage: data.nodeByUri?.featuredImage?.node.mediaDetails.sizes[1].sourceUrl,
   };
 };

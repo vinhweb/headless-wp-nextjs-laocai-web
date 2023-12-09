@@ -1,8 +1,10 @@
+const MAX_DISPLAY = 6
+
 export const getLatestPosts = async () => {
   const params = {
     query: `query LatestPostQuery {
        posts(where: { 
-        offsetPagination: { size: 3 }
+        offsetPagination: { size: ${MAX_DISPLAY} }
       }) {
         pageInfo {
           offsetPagination {

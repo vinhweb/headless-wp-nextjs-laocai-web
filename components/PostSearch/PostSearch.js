@@ -7,10 +7,11 @@ import queryString from "query-string";
 import { Pagination } from "../PropertySearch/Pagination";
 import { Filters } from "./Filters";
 
+const MAX_DISPLAY = 6
+
 export default function PostSearch(){
   const [posts, setPosts] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
-  const pageSize = 3;
   const router = useRouter();
   const pathname = usePathname();
 
@@ -59,7 +60,7 @@ export default function PostSearch(){
       <Filters onSearch={handleSearch} />
       <ul className="divide-y divide-gray-200 dark:divide-gray-700">
         {!posts.length && 'No posts found.'}
-        {posts.slice(0, pageSize).map((post) => {
+        {posts.slice(0, MAX_DISPLAY).map((post) => {
           const { uri, date, title, seo } = post
           const image = post.featuredImage?.node?.sourceUrl
           return (
@@ -77,7 +78,7 @@ export default function PostSearch(){
       </ul>
       <Pagination
         onPageClick={handlePageClick}
-        totalPages={Math.ceil(totalResults / pageSize)}
+        totalPages={Math.ceil(totalResults / MAX_DISPLAY)}
       />
     </>
   )

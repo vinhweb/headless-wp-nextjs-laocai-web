@@ -23,7 +23,7 @@ export default function PostCard({image, title, date, seo, uri}){
           )}
         </div>
         <div className="space-y-5 xl:col-span-2">
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div>
               <h2 className="text-2xl font-bold font-heading leading-8 tracking-tight">
                 <Link
@@ -33,14 +33,17 @@ export default function PostCard({image, title, date, seo, uri}){
                   {title}
                 </Link>
               </h2>
-              <dl>
-                <dt className="sr-only">Published on</dt>
-                <dd className="text-sm mt-1 font-medium leading-6 text-gray-500 dark:text-gray-400">
-                  <time dateTime={date}>{formatDate(date)}</time>
-                </dd>
-              </dl>
+              <div className={'flex gap-2 text-sm mt-1 leading-6 text-gray-600 dark:text-gray-400'}>
+                Ngày đăng
+                <dl>
+                  <dt className="sr-only">Ngày đăng</dt>
+                  <dd className="">
+                    <time dateTime={date}>{formatDate(date)}</time>
+                  </dd>
+                </dl>
+              </div>
             </div>
-            <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+            <div className="prose max-w-none text-gray-700 dark:text-gray-400">
               {seo.metaDesc}
             </div>
           </div>

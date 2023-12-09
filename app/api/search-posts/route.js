@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+const MAX_DISPLAY = 6
+
 export async function POST(request) {
   try {
     const filters = await request.json();
@@ -12,7 +14,7 @@ export async function POST(request) {
       body: JSON.stringify({
         query: `query PostsQuery {
           posts(where: { 
-            offsetPagination: { size: 3, offset: ${((filters.page || 1) - 1) * 3} }
+            offsetPagination: { size: ${MAX_DISPLAY}, offset: ${((filters.page || 1) - 1) * MAX_DISPLAY} }
             search: "${filters?.searchTerm}"
           }) {
             pageInfo {
