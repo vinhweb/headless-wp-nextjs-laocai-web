@@ -30,7 +30,7 @@ export const PropertySearch = () => {
       filters.petFriendly = true;
     }
 
-    const response = await fetch(`/api/search`, {
+    const response = await fetch(`/api/search-properties`, {
       method: "POST",
       body: JSON.stringify({
         page: parseInt(page || "1"),

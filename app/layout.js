@@ -7,6 +7,8 @@ import "../styles/globals.css";
 
 import { getMenu } from "../utils/getMenu";
 import { MainMenu } from "../components/MainMenu";
+import SectionContainer from "../components/SectionContainer";
+import Footer from "../components/Footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -25,13 +27,20 @@ export default async function RootLayout({ children }) {
   const data = await getMenu();
   return (
     <html className={`${poppins.variable} ${space_grotesk.variable}`}>
+      <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
+      <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <body className="font-body bg-white text-black antialiased dark:bg-gray-950 dark:text-white">
-        <MainMenu
-          items={data.mainMenuItems}
-          callToActionDestination={data.callToActionDestination}
-          callToActionLabel={data.callToActionLabel}
-        />
-        {children}
+        <SectionContainer>
+          <MainMenu
+            items={data.mainMenuItems}
+            callToActionDestination={data.callToActionDestination}
+            callToActionLabel={data.callToActionLabel}
+          />
+          <main className={'mb-auto'}>
+            {children}
+          </main>
+          <Footer/>
+        </SectionContainer>
       </body>
     </html>
   );
