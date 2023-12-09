@@ -8,7 +8,11 @@ export default async function Page({ params }) {
   if(!data?.blocks) {
     notFound()
   }
-  return <BlockRenderer blocks={data.blocks} />;
+  return (
+    <div className={'prose max-w-none pb-8 pt-10 dark:prose-invert'}>
+      <BlockRenderer blocks={data.blocks} />;
+    </div>
+  )
 }
 export async function generateMetadata({ params }) {
   const seo = await getPageSeo(params.slug.join("/"));

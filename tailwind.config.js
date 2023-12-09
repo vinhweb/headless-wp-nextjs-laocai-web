@@ -20,8 +20,8 @@ module.exports = {
         14: '3.5rem',
       },
       fontFamily: {
-        // heading: "var(--font-aboreto)",
-        // body: "var(--font-poppins)",
+        heading: "var(--font-montserrat)",
+        body: "var(--font-roboto)",
         sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
       },
       colors: {

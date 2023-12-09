@@ -25,7 +25,7 @@ export default function PostCard({image, title, date, seo, uri}){
         <div className="space-y-5 xl:col-span-2">
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-bold leading-8 tracking-tight">
+              <h2 className="text-2xl font-bold font-heading leading-8 tracking-tight">
                 <Link
                   href={`${uri}`}
                   className="text-gray-900 dark:text-gray-100"

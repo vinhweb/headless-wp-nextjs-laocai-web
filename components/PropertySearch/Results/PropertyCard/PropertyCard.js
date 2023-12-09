@@ -34,7 +34,7 @@ export const PropertyCard = ({
           style={{ objectFit: "cover" }}
         />
       </div>
-      <div className="mt-3 text-lg font-bold">{title}</div>
+      <div className="mt-3 text-lg font-bold font-heading">{title}</div>
       <div className="text-lg">£{numeral(price).format("0,0")}</div>
       <div className="flex justify-between text-sm mt-3">
         <div>
