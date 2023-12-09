@@ -8,7 +8,9 @@ export default function PostCard({image, title, date, seo, uri}){
       <div className="space-y-2 xl:grid xl:grid-cols-3 xl:items-start xl:space-y-0">
         <div className={'pr-2 mr-2'}>
           {image && (
-            <div className={'flex w-full relative h-[200px]'}>
+            <Link
+              href={`${uri}`}
+              className={'flex w-full relative h-[200px]'}>
               <Image
                 src={image}
                 priority="low"
@@ -17,7 +19,7 @@ export default function PostCard({image, title, date, seo, uri}){
                 sizes="300px"
                 style={{ objectFit: "cover" }}
               />
-            </div>
+            </Link>
           )}
         </div>
         <div className="space-y-5 xl:col-span-2">

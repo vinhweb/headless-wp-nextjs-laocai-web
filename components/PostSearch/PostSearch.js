@@ -18,7 +18,7 @@ export default function PostSearch(){
     const { page, searchTerm } =
       queryString.parse(window.location.search);
     const filters = {
-      searchTerm
+      searchTerm: searchTerm || ""
     };
 
     const response = await fetch(`/api/search-posts`, {

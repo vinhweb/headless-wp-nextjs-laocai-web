@@ -20,17 +20,15 @@ export const Filters = ({ onSearch }) => {
   }, []);
 
   return (
-    <div className="max-w-5xl mx-auto my-5 flex gap-5 border-solid border-slate-400 border-2 p-5 rounded-md">
-      <div className="flex-1">
-        <span>Min price</span>
-        <Input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
-      <div>
-        <div className="btn" onClick={handleSearch}>
+    <div className="mx-auto my-5 flex gap-5 ">
+      <Input
+        type="text"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder={"Vui lòng nhập từ khóa"}
+      />
+      <div className={'flex-shrink-0'}>
+        <div className="btn my-0" onClick={handleSearch}>
           Tìm kiếm
         </div>
       </div>
