@@ -1,28 +1,8 @@
-export const getPageSeo = async (uri) => {
+export const getPostSeo = async (uri) => {
   const params = {
-    query: `query PageQuery($uri: String!) {
+    query: `query PostQuery($uri: String!) {
       nodeByUri(uri: $uri) {
-        ... on Page {
-          seo {
-            opengraphImage {
-              mediaItemUrl
-            }
-            opengraphModifiedTime
-            opengraphPublishedTime
-            opengraphTitle
-            opengraphType
-            opengraphUrl
-            schema {
-              raw
-            }
-            title
-            metaDesc
-            opengraphSiteName
-            readingTime
-            opengraphPublisher
-          }
-        }
-        ... on Property {
+        ... on Post {
           seo {
             opengraphImage {
               mediaItemUrl

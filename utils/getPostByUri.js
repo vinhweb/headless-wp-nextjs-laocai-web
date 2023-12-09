@@ -1,19 +1,15 @@
 import { cleanAndTransformBlocks } from "./cleanAndTransformBlocks";
 import { mapMainMenuItems } from "./mapMainMenuItems";
 
-export const getPageByUri = async (uri) => {
+export const getPostByUri = async (uri) => {
   const params = {
-    query: `query PageQuery($uri: String!) {
+    query: `query PostQuery($uri: String!) {
       nodeByUri(uri: $uri) {
-        ... on Page {
+        ... on Post {
           id
           title
           blocks
-        }
-        ... on Property {
-          id
-          title
-          blocks
+          content
         }
       }
       acfOptionsMainMenu {
@@ -71,5 +67,6 @@ export const getPageByUri = async (uri) => {
     callToActionDestination:
       data.acfOptionsMainMenu.mainMenu.callToActionButton.destination.uri,
     blocks,
+    content: data.nodeByUri?.content
   };
 };

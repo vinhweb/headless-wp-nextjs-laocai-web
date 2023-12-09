@@ -163,6 +163,20 @@ export const BlockRenderer = ({ blocks }) => {
           />
         );
       }
+      case "core/list": {
+        return (
+          <ul>
+            <BlockRenderer key={block.id} blocks={block.innerBlocks} />
+          </ul>
+        );
+      }
+      case "core/list-item": {
+        return (
+          <li key={block.id} dangerouslySetInnerHTML={{__html: block.attributes.content}}></li>
+        )
+      }
+      // case "core/html":
+      // case "core/table":
       default: {
         return null;
       }

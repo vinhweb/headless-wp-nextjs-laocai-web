@@ -1,28 +1,35 @@
-import { getPageByUri } from "../../utils/getPageByUri";
-import { BlockRenderer } from "../../components/BlockRenderer";
-import { getPageSeo } from "../../utils/getPageSeo";
+import { getPageByUri } from "../../../utils/getPageByUri";
+import { BlockRenderer } from "../../../components/BlockRenderer";
+import { getPageSeo } from "../../../utils/getPageSeo";
 import { notFound } from "next/navigation";
+import { getPostByUri } from "../../../utils/getPostByUri";
+import { getPostSeo } from "../../../utils/getPostSeo";
 
 export default async function Page({ params }) {
-  const data = await getPageByUri(params.slug.join("/"));
-  if(!data?.blocks) {
+  const data = await getPostByUri(params.slug.join('/'));
+
+  if(!data?.content) {
     notFound()
   }
   return (
-    <div className={'prose max-w-none pb-8 pt-10 dark:prose-invert'}>
-      <BlockRenderer blocks={data.blocks} />;
-    </div>
+    <article>
+      <div
+        dangerouslySetInnerHTML={{ __html: data.content }}
+        className={'prose-lg max-w-none pb-8 pt-10 dark:prose-invert'}
+      >
+      </div>
+    </article>
   )
 }
 export async function generateMetadata({ params }) {
-  const seo = await getPageSeo(params.slug.join("/"));
+  const seo = await getPostSeo(params.slug.join('/'));
   if(!seo){
     return {
       title: '404 | Không tìm thấy nội dung'
     }
   }
   return {
-    metadataBase: new URL(`https://laocaiweb.com/${params.slug.join("/")}`),
+    metadataBase: new URL(`https://laocaiweb.com/${params.slug.join('/')}`),
     title: seo.title || "",
     description: seo.metaDesc || "",
     robots: {
