@@ -9,15 +9,14 @@ import { Filters } from "./Filters";
 
 const MAX_DISPLAY = 6
 
-export default function PostSearch(){
-  const [posts, setPosts] = useState([]);
-  const [totalResults, setTotalResults] = useState(0);
+export default function PostSearch({initData = [], initTotal = 0}){
+  const [posts, setPosts] = useState(initData);
+  const [totalResults, setTotalResults] = useState(initTotal);
   const router = useRouter();
   const pathname = usePathname();
 
   const search = async () => {
-    const { page, searchTerm } =
-      queryString.parse(window.location.search);
+    const { page, searchTerm } = queryString.parse(window.location.search);
     const filters = {
       searchTerm: searchTerm || ""
     };

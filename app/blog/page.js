@@ -27,7 +27,7 @@ export default async function Page({ params }) {
             Những tin tức mới nhất về Lào Cai Web
           </p>
           <div>
-            <PostSearch/>
+            <PostSearch initData={posts} initTotal={total}/>
           </div>
         </div>
       </div>
