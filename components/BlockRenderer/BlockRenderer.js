@@ -95,6 +95,9 @@ export const BlockRenderer = ({ blocks }) => {
         return <PostSearch key={block.id} />;
       }
       case "core/cover": {
+        if(!block?.attributes?.url){
+          return null
+        }
         return (
           <Cover
             key={block.id}
@@ -146,6 +149,9 @@ export const BlockRenderer = ({ blocks }) => {
         return <BlockRenderer key={block.id} blocks={block.innerBlocks} />;
       }
       case "core/image": {
+        if(!block?.attributes?.url){
+          return null
+        }
         return (
           <Image
             key={block.id}
