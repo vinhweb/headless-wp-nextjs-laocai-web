@@ -9,6 +9,7 @@ import { getMenu } from "../utils/getMenu";
 import { MainMenu } from "../components/MainMenu";
 import SectionContainer from "../components/SectionContainer";
 import Footer from "../components/Footer";
+import { Analytics } from "@vercel/analytics/react";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -44,7 +45,6 @@ export default async function RootLayout({ children }) {
     <html className={`${space_grotesk.variable} ${roboto.variable} ${montserrat.variable}`}>
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
-      <SpeedInsights/>
       <body className="font-body bg-white text-black antialiased dark:bg-gray-950 dark:text-white">
         <SectionContainer>
           <MainMenu
@@ -57,6 +57,9 @@ export default async function RootLayout({ children }) {
           </main>
           <Footer/>
         </SectionContainer>
+
+        <Analytics/>
+        <SpeedInsights/>
       </body>
     </html>
   );
