@@ -78,5 +78,5 @@ export const getPageSeo = async (uri) => {
     },
   });
   const { data } = await response.json();
-  return data.nodeByUri?.seo || {};
+  return data?.nodeByUri?.seo || null;
 };

@@ -1,13 +1,22 @@
 import { getPageByUri } from "../../utils/getPageByUri";
 import { BlockRenderer } from "../../components/BlockRenderer";
 import { getPageSeo } from "../../utils/getPageSeo";
+import { notFound } from "next/navigation";
 
 export default async function Page({ params }) {
   const data = await getPageByUri(params.slug.join("/"));
+  if(!data?.blocks) {
+    notFound()
+  }
   return <BlockRenderer blocks={data.blocks} />;
 }
 export async function generateMetadata({ params }) {
   const seo = await getPageSeo(params.slug.join("/"));
+  if(!seo){
+    return {
+      title: '404 | Không tìm thấy nội dung'
+    }
+  }
   return {
     title: seo.title || "",
     description: seo.metaDesc || "",

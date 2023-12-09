@@ -66,9 +66,10 @@ export const getPageByUri = async (uri) => {
     },
   });
   const { data } = await response.json();
-  const blocks = cleanAndTransformBlocks(data.nodeByUri.blocks);
+  const blocks = data.nodeByUri ? cleanAndTransformBlocks(data.nodeByUri.blocks) : null
+
   return {
-    title: data.nodeByUri.title,
+    title: data.nodeByUri?.title,
     mainMenuItems: mapMainMenuItems(data.acfOptionsMainMenu.mainMenu.menuItems),
     callToActionLabel:
       data.acfOptionsMainMenu.mainMenu.callToActionButton.label,
