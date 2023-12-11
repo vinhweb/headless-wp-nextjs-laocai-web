@@ -9,16 +9,15 @@ import { Filters } from "./Filters";
 
 const MAX_DISPLAY = 6
 
-export default function PostSearch({initData = [], initTotal = 0}){
-  const [posts, setPosts] = useState(initData);
-  const [totalResults, setTotalResults] = useState(initTotal);
+export default function PostSearch({initData, initTotal}){
+  const [posts, setPosts] = useState([]);
+  const [totalResults, setTotalResults] = useState(0);
   const router = useRouter();
   const pathname = usePathname();
 
-  const search = async () => {
-    const { page, searchTerm } = queryString.parse(window.location.search);
+  const search = async (key, page) => {
     const filters = {
-      searchTerm: searchTerm || ""
+      searchTerm: key || ""
     };
 
     const response = await fetch(`/api/search-posts`, {
@@ -28,6 +27,7 @@ export default function PostSearch({initData = [], initTotal = 0}){
         ...filters,
       }),
     });
+
     const data = await response.json();
     setPosts(data.posts);
     setTotalResults(data.total);
@@ -43,15 +43,22 @@ export default function PostSearch({initData = [], initTotal = 0}){
     );
   };
 
-  useEffect(() => {
-    search();
-  }, []);
-
-  const handleSearch = async ({ searchTerm, }) => {
+  const handleSearch = async ({ searchTerm }) => {
     router.push(
       `${pathname}?page=1&searchTerm=${searchTerm}`
     );
+    search(searchTerm, 1)
   };
+
+  useEffect(() => {
+    const { page, searchTerm } = queryString.parse(window.location.search);
+    if(searchTerm){
+      search(searchTerm, page)
+    } else {
+      setPosts(initData)
+      setTotalResults(initTotal)
+    }
+  }, []);
 
 
   return (
@@ -61,7 +68,11 @@ export default function PostSearch({initData = [], initTotal = 0}){
         {!posts.length && 'No posts found.'}
         {posts.slice(0, MAX_DISPLAY).map((post) => {
           const { uri, date, title, seo } = post
-          const image = post.featuredImage?.node?.sourceUrl
+
+          if(post.featuredImage?.node.mediaDetails.sizes){
+            post.featuredImage?.node.mediaDetails.sizes.sort((a,b) =>  b.width - a.width)
+          }
+          const image = post.featuredImage?.node?.mediaDetails.sizes[0].sourceUrl
           return (
             <li key={uri} className="py-12">
               <PostCard

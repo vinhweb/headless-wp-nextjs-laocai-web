@@ -11,6 +11,12 @@ export const Filters = ({ onSearch }) => {
     });
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch()
+    }
+  }
+
   useEffect(() => {
     const {
       searchTerm: searchTermInitial,
@@ -22,9 +28,10 @@ export const Filters = ({ onSearch }) => {
   return (
     <div className="mx-auto my-5 flex gap-5 ">
       <Input
-        type="text"
+        type="search"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        onKeyDown={handleKeyDown}
         placeholder={"Vui lòng nhập từ khóa"}
       />
       <div className={'flex-shrink-0'}>
