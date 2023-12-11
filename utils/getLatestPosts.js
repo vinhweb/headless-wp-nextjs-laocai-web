@@ -23,6 +23,13 @@ export const getLatestPosts = async () => {
             node {
               uri
               sourceUrl
+              mediaDetails {
+                sizes {
+                  sourceUrl
+                  width
+                  height
+                }
+              }
             }
           }
         }

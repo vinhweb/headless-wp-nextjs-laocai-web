@@ -85,6 +85,13 @@ export async function POST(request) {
                 node {
                   uri
                   sourceUrl
+                  mediaDetails {
+                    sizes {
+                      sourceUrl
+                      width
+                      height
+                    }
+                  }
                 }
               }
               propertyFeatures {

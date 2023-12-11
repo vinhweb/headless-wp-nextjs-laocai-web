@@ -17,6 +17,7 @@ export const getPostByUri = async (uri) => {
           content(format: RENDERED)
           featuredImage {
             node {
+              sourceUrl
               mediaDetails {
                 sizes {
                   sourceUrl
@@ -75,6 +76,10 @@ export const getPostByUri = async (uri) => {
   const { data } = await response.json();
   const blocks = data.nodeByUri ? cleanAndTransformBlocks(data.nodeByUri.blocks) : null
 
+  if(data.nodeByUri?.featuredImage?.node.mediaDetails.sizes){
+    data.nodeByUri?.featuredImage?.node.mediaDetails.sizes.sort((a,b) =>  b.width - a.width)
+  }
+
   return {
     title: data.nodeByUri?.title,
     mainMenuItems: mapMainMenuItems(data.acfOptionsMainMenu.mainMenu.menuItems),
@@ -87,6 +92,6 @@ export const getPostByUri = async (uri) => {
     date: data.nodeByUri?.date,
     modified: data.nodeByUri?.modified,
     excerpt: data.nodeByUri?.excerpt,
-    featuredImage: data.nodeByUri?.featuredImage?.node.mediaDetails.sizes[1].sourceUrl,
+    featuredImage: data.nodeByUri?.featuredImage?.node.mediaDetails.sizes[0].sourceUrl,
   };
 };

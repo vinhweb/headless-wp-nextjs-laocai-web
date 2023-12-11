@@ -26,7 +26,11 @@ export default async function Page() {
             {!posts.length && 'No posts found.'}
             {posts.slice(0, MAX_DISPLAY).map((post) => {
               const { uri, date, title, seo } = post
-              const image = post.featuredImage?.node?.sourceUrl
+
+              if(post.featuredImage?.node.mediaDetails.sizes){
+                post.featuredImage?.node.mediaDetails.sizes.sort((a,b) =>  b.width - a.width)
+              }
+              const image = post.featuredImage?.node?.mediaDetails.sizes[0].sourceUrl
               return (
                 <li key={uri} className="py-12">
                   <PostCard
