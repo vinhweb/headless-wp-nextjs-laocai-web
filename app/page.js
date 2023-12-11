@@ -9,6 +9,7 @@ import { getFontSizeForHeading } from "../utils/fonts";
 const MAX_DISPLAY = 6
 
 export default async function Page() {
+  const { content, title } = await getPageByUri('/');
   const data = await getLatestPosts();
   const {posts, total} = data
 
@@ -16,12 +17,19 @@ export default async function Page() {
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <h1 className={`font-bold font-heading max-w-5xl mx-auto my-5 leading-tight ${getFontSizeForHeading(1)} text-left`}>
-            Mới nhất
-          </h1>
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            Những tin tức mới nhất về Lào Cai Web
-          </p>
+          <div>
+            <h1 className={`font-bold font-heading max-w-5xl mx-auto my-5 leading-tight ${getFontSizeForHeading(1)} text-left`}>
+              {title}
+            </h1>
+            <div className={'prose max-w-full'} dangerouslySetInnerHTML={{__html: content}}></div>
+          </div>
+          <hr/>
+          <div className={''}>
+            <h2 className={`font-bold font-heading leading-tight ${getFontSizeForHeading(2)} text-left`}>Bài Viết Mới Nhất</h2>
+            <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+              Những tin tức mới nhất về Lào Cai Web
+            </p>
+          </div>
           <ul className="divide-y divide-gray-200 dark:divide-gray-700">
             {!posts.length && 'No posts found.'}
             {posts.slice(0, MAX_DISPLAY).map((post) => {

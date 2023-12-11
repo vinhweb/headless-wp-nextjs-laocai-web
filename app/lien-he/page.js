@@ -3,46 +3,39 @@ import { BlockRenderer } from "../../components/BlockRenderer";
 import { getPageSeo } from "../../utils/getPageSeo";
 import { notFound } from "next/navigation";
 import { getFontSizeForHeading } from "../../utils/fonts";
-import { getLatestPosts } from "../../utils/getLatestPosts";
 import PostSearch from "../../components/PostSearch/PostSearch";
-
-const MAX_DISPLAY = 6
+import { FormspreeForm } from "../../components/FormspreeForm";
 
 export default async function Page({ params }) {
-  const data = await getPageByUri('blog');
-  const dataPosts = await getLatestPosts();
-  const {posts, total} = dataPosts
-
-  if(!data?.blocks) {
-    notFound()
-  }
+  const data = await getPageByUri('lien-he');
   return (
     <>
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <h1 className={`font-bold font-heading max-w-5xl mx-auto my-5 leading-tight ${getFontSizeForHeading(1)} text-left`}>
-            Blog
-          </h1>
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            Khám phá những thông tin mới nhất với Lào Cai Web 🌍✨ | Blog
+      <div className="space-y-2 pt-6 md:space-y-5">
+        <h1 className={`font-bold font-heading max-w-5xl mx-auto my-5 leading-tight ${getFontSizeForHeading(1)} text-left`}>
+          {data.title}
+        </h1>
+        <div>
+          <p className="mb-2 text-lg leading-7 text-gray-500 dark:text-gray-400">
+            Cần liên hệ với chúng tôi? Trang Liên Hệ của Lào Cai Web sẽ giúp bạn! <br/>📧🌐 Hãy để chúng tôi chăm sóc bạn một cách tốt nhất!
           </p>
-          <div>
-            <PostSearch initData={posts} initTotal={total}/>
-          </div>
+          <p>Hotline: 0979.788.685 | Email: vinhnguyenhubt@gmail.com</p>
+          <p>Mua source code, theme: <a className={'text-indigo-500'} href="https://vinhweb.com/">vinhweb.com</a></p>
         </div>
       </div>
+
+      <FormspreeForm formId={'mzblnape'}/>
     </>
   )
 }
 export async function generateMetadata({ params }) {
-  const seo = await getPageSeo('blog');
+  const seo = await getPageSeo('lien-he');
   if(!seo){
     return {
       title: '404 | Không tìm thấy nội dung'
     }
   }
   return {
-    metadataBase: new URL(`https://laocaiweb.com/${'blog'}`),
+    metadataBase: new URL(`https://laocaiweb.com/${'lien-he'}`),
     title: seo.title || "",
     description: seo.metaDesc || "",
     robots: {

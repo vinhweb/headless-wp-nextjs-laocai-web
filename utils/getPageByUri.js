@@ -9,11 +9,13 @@ export const getPageByUri = async (uri) => {
           id
           title
           blocks
+          content
         }
         ... on Property {
           id
           title
           blocks
+          content
         }
       }
       acfOptionsMainMenu {
@@ -65,6 +67,7 @@ export const getPageByUri = async (uri) => {
 
   return {
     title: data.nodeByUri?.title,
+    content: data.nodeByUri?.content,
     mainMenuItems: mapMainMenuItems(data.acfOptionsMainMenu.mainMenu.menuItems),
     callToActionLabel:
       data.acfOptionsMainMenu.mainMenu.callToActionButton.label,

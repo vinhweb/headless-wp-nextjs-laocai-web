@@ -51,8 +51,9 @@ export default function PostSearch({initData, initTotal}){
     search(searchTerm, 1)
   };
 
+  const { page, searchTerm } = queryString.parse(window.location.search);
+
   useEffect(() => {
-    const { page, searchTerm } = queryString.parse(window.location.search);
     if(searchTerm){
       search(searchTerm, page)
     } else {
@@ -64,7 +65,15 @@ export default function PostSearch({initData, initTotal}){
 
   return (
     <>
-      <Filters onSearch={handleSearch} />
+      <div>
+        <Filters onSearch={handleSearch} />
+        <div className={'text-gray-600 text-sm'}>
+          {searchTerm && (
+            <p>Kết quả tìm kiếm cho từ khóa: <strong className={'text-black'}>{searchTerm}</strong></p>
+          )}
+          <p>Hiển thị {totalResults} bài viết - trang {page || 1}</p>
+        </div>
+      </div>
       <ul className="divide-y divide-gray-200 dark:divide-gray-700">
         {!posts.length && 'No posts found.'}
         {posts.slice(0, MAX_DISPLAY).map((post) => {

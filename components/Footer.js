@@ -28,9 +28,7 @@ export default function Footer() {
           <Link href="/">{siteMetadata.title}</Link>
         </div>
         <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
-          <Link href="https://vinhweb.com/">
-            VinhWeb.com
-          </Link>
+          Hotline: 0979.788.685 | Email: vinhnguyenhubt@gmail.com
         </div>
       </div>
     </footer>

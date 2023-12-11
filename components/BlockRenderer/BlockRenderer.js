@@ -78,6 +78,7 @@ export const BlockRenderer = ({ blocks }) => {
         );
       }
       case "core/post-title":
+        return null
       case "core/heading": {
         return (
           <Heading

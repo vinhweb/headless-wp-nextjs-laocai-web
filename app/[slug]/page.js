@@ -2,6 +2,8 @@ import { getPageByUri } from "../../utils/getPageByUri";
 import { BlockRenderer } from "../../components/BlockRenderer";
 import { getPageSeo } from "../../utils/getPageSeo";
 import { notFound } from "next/navigation";
+import { getFontSizeForHeading } from "../../utils/fonts";
+import PostSearch from "../../components/PostSearch/PostSearch";
 
 export default async function Page({ params }) {
   const data = await getPageByUri(params.slug);
@@ -9,7 +11,14 @@ export default async function Page({ params }) {
     notFound()
   }
   return (
-    <BlockRenderer blocks={data.blocks} />
+    <>
+      <div className="space-y-2 pt-6 md:space-y-5">
+        <h1 className={`font-bold font-heading max-w-5xl mx-auto my-5 leading-tight ${getFontSizeForHeading(1)} text-left`}>
+          {data.title}
+        </h1>
+      </div>
+      <BlockRenderer blocks={data.blocks} />
+    </>
   )
 }
 export async function generateMetadata({ params }) {
