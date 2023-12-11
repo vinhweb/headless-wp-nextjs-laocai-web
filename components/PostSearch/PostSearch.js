@@ -41,6 +41,7 @@ export default function PostSearch({initData, initTotal}){
     router.push(
       `${pathname}?page=${pageNumber}&searchTerm=${searchTerm}`
     );
+    search(searchTerm, pageNumber)
   };
 
   const handleSearch = async ({ searchTerm }) => {
