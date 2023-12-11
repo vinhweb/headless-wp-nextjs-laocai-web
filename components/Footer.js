@@ -21,11 +21,11 @@ export default function Footer() {
           </Link>
         </div>
         <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
-          <div>{siteMetadata.author}</div>
+          <a className={'text-indigo-500'} target={'_blank'} href="https://vinhweb.com/">{siteMetadata.author}</a>
           <div>{` • `}</div>
           <div>{`© ${new Date().getFullYear()}`}</div>
           <div>{` • `}</div>
-          <Link href="/">{siteMetadata.title}</Link>
+          <Link className={'text-indigo-500'} href="/">{siteMetadata.title}</Link>
         </div>
         <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
           Hotline: 0979.788.685 | Email: vinhnguyenhubt@gmail.com

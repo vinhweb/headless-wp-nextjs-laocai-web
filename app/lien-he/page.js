@@ -19,7 +19,7 @@ export default async function Page({ params }) {
             Cần liên hệ với chúng tôi? Trang Liên Hệ của Lào Cai Web sẽ giúp bạn! <br/>📧🌐 Hãy để chúng tôi chăm sóc bạn một cách tốt nhất!
           </p>
           <p>Hotline: 0979.788.685 | Email: vinhnguyenhubt@gmail.com</p>
-          <p>Mua source code, theme: <a className={'text-indigo-500'} href="https://vinhweb.com/">vinhweb.com</a></p>
+          <p>Mua source code, theme: <a className={'text-indigo-500'} target={'_blank'} href="https://vinhweb.com/">vinhweb.com</a></p>
         </div>
       </div>
 
