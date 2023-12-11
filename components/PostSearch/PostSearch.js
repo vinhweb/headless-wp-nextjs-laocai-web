@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import PostCard from "./Results/PostCard";
 import queryString from "query-string";
 import { Pagination } from "../PropertySearch/Pagination";
@@ -14,6 +14,9 @@ export default function PostSearch({initData, initTotal}){
   const [totalResults, setTotalResults] = useState(0);
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams()
+  const page = searchParams.get('page') || null
+  const searchTerm = searchParams.get('searchTerm') || null
 
   const search = async (key, page) => {
     const filters = {
@@ -34,10 +37,6 @@ export default function PostSearch({initData, initTotal}){
   };
 
   const handlePageClick = async (pageNumber) => {
-    const { searchTerm } = queryString.parse(
-      window.location.search
-    );
-
     router.push(
       `${pathname}?page=${pageNumber}&searchTerm=${searchTerm}`
     );
@@ -51,7 +50,6 @@ export default function PostSearch({initData, initTotal}){
     search(searchTerm, 1)
   };
 
-  const { page, searchTerm } = queryString.parse(window.location.search);
 
   useEffect(() => {
     if(searchTerm){
