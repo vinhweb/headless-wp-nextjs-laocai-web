@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 
 export const dynamic = 'force-dynamic' // defaults to auto
 
@@ -10,9 +11,7 @@ export async function GET(request, {params}) {
 
   let isXml = slug.endsWith(".xml");
   if (!isXml) {
-    return {
-      notFound: true,
-    };
+    notFound()
   }
   let slugArray = slug.replace(".xml", "").split("_");
   let type = slugArray[0];
@@ -20,20 +19,16 @@ export async function GET(request, {params}) {
   let page = pageNo ? parseInt(pageNo) : null;
   let possibleTypes = await getTotalCounts();
   if (!possibleTypes.some((e) => e.name === type)) {
-    return {
-      notFound: true,
-    };
+    notFound()
   }
   let pageUrls = await getSitemapPageUrls({ type, page });
   if (!pageUrls?.length) {
-    return {
-      notFound: true,
-    };
+    notFound()
   }
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  xsi:schemaLocation="https://www.sitemaps.org/schemas/sitemap/0.9 https://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+  xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
     ${generateSitemapPaths(pageUrls)}
   </urlset>`;
   return new Response(sitemap)

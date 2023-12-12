@@ -7,8 +7,8 @@ export async function GET(req) {
   const details = await getTotalCounts();
   let sitemapIndex = `<?xml version='1.0' encoding='UTF-8'?>
     <sitemapindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd"
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      xsi:schemaLocation="https://www.sitemaps.org/schemas/sitemap/0.9 https://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd"
+      xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
       ${details.map((item) => getSitemapPages(item)).join("")}
     </sitemapindex>`;
 
