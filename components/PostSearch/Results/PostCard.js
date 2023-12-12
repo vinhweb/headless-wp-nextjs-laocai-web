@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import formatDate from "../../../utils/formatDate";
+import { frontendUrl } from "../../../utils/variables";
 
 export default function PostCard({image, title, date, seo, uri}){
   return (
@@ -9,7 +10,7 @@ export default function PostCard({image, title, date, seo, uri}){
         <div className={'pr-2 mr-2'}>
           {image && (
             <Link
-              href={`/blog${uri}`}
+              href={`${frontendUrl}/${uri}`}
               className={'flex w-full relative h-[200px]'}>
               <Image
                 src={image}
@@ -27,7 +28,7 @@ export default function PostCard({image, title, date, seo, uri}){
             <div>
               <h2 className="text-2xl font-bold font-heading leading-8 tracking-tight">
                 <Link
-                  href={`/blog${uri}`}
+                  href={`${frontendUrl}/${uri}`}
                   className="text-gray-900 dark:text-gray-100"
                 >
                   {title}
@@ -49,7 +50,7 @@ export default function PostCard({image, title, date, seo, uri}){
           </div>
           <div className="text-base font-medium leading-6">
             <Link
-              href={`/blog${uri}`}
+              href={`${frontendUrl}/${uri}`}
               className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
               aria-label={`Read more: "${title}"`}
             >

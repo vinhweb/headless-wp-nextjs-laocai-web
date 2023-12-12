@@ -9,7 +9,7 @@ import Image from "next/image";
 import formatDate from "../../../utils/formatDate";
 
 export default async function Page({ params }) {
-  const data = await getPostByUri(params.slug.join('/'));
+  const data = await getPostByUri('blog/'+params.slug.join('/'));
 
   if(!data?.content) {
     notFound()
@@ -22,7 +22,7 @@ export default async function Page({ params }) {
             {data.title}
           </h1>
           <div className="pb-4 z-10">
-            Ngày đăng {formatDate(data.date)} - Cập nhật {formatDate(data.modified)} - Tác giả: Vinh Web
+            Ngày đăng {formatDate(data.date)} - Tác giả: Vinh Web
           </div>
         </div>
         <div className="flex w-full relative h-[200px]">
@@ -51,7 +51,7 @@ export default async function Page({ params }) {
   )
 }
 export async function generateMetadata({ params }) {
-  const seo = await getPostSeo(params.slug.join('/'));
+  const seo = await getPostSeo('blog/' + params.slug.join('/'));
   if(!seo){
     return {
       title: '404 | Không tìm thấy nội dung'
