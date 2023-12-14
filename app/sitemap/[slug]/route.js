@@ -26,8 +26,18 @@ export async function GET(request, {params}) {
     notFound()
   }
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     ${generateSitemapPaths(pageUrls)}
   </urlset>`;
-  return new Response(sitemap)
+
+  const newHeaders = new Headers()
+  newHeaders.set("Content-Type", "text/xml; charset=utf-8");
+  newHeaders.set(
+    "Cache-Control",
+    "public, s-maxage=600, stale-while-revalidate=600"
+  );
+
+  return new Response(sitemap, {
+    headers: newHeaders
+  })
 }

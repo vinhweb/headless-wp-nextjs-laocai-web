@@ -29,7 +29,6 @@
     "image-size": "1.0.0",
     "install": "^0.13.0",
     "next": "^14.0.3",
-    "next-sitemap": "^4.2.3",
     "next-themes": "^0.2.1",
     "numeral": "^2.0.6",
     "pliny": "0.1.6",
