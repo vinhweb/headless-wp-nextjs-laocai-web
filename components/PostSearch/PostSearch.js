@@ -16,7 +16,7 @@ export default function PostSearch({initData, initTotal}){
   const pathname = usePathname();
   const searchParams = useSearchParams()
   const page = searchParams.get('page') || null
-  const searchTerm = searchParams.get('searchTerm') || null
+  const searchTerm = searchParams.get('searchTerm') || ''
 
   const search = async (key, page) => {
     const filters = {
@@ -37,16 +37,20 @@ export default function PostSearch({initData, initTotal}){
   };
 
   const handlePageClick = async (pageNumber) => {
-    router.push(
-      `${pathname}?page=${pageNumber}&searchTerm=${searchTerm}`
-    );
+    let route = `${pathname}?page=${pageNumber}`
+    if(searchTerm){
+      route += `&searchTerm=${searchTerm}`
+    }
+    router.push(route);
     search(searchTerm, pageNumber)
   };
 
   const handleSearch = async ({ searchTerm }) => {
-    router.push(
-      `${pathname}?page=1&searchTerm=${searchTerm}`
-    );
+    let route = `${pathname}?page=1`
+    if(searchTerm){
+      route += `&searchTerm=${searchTerm}`
+    }
+    router.push(route);
     search(searchTerm, 1)
   };
 
